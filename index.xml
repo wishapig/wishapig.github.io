@@ -2,11 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My New Hugo Site</title>
-    <link>https://example.org/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Aug 2024 17:12:58 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sol</title>
+      <link>http://localhost:1313/posts/sol/</link>
+      <pubDate>Tue, 13 Aug 2024 17:12:58 +0800</pubDate>
+      <guid>http://localhost:1313/posts/sol/</guid>
+      <description>另外，点分治，边分治都可以在 $O(n\log^2 n)$ 的时间内解决这档问题，其原理与 dsu 类似。</description>
+    </item>
+    <item>
+      <title>My First Post</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Tue, 13 Aug 2024 16:19:21 +0800</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。&#xA;定义一条路径的权值为路径上点权的最大值乘上边权之和。&#xA;求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。&#xA;$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。&#xA;Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。&#xA;注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。&#xA;Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。&#xA;（不会有人真的做 $n$ 次 dij 吧）&#xA;Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，请各位充分发挥自己的想象力&#xA;Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为：&#xA;for (int k=1; k&amp;lt;=n; k++){ for (int i=1; i&amp;lt;=n; i++) for (int j=1; j&amp;lt;=n; j++) dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。</description>
+    </item>
   </channel>
 </rss>

@@ -2,6 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/zh-cn/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://example.com/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="https://example.com/ar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://example.com/zh-cn/"
+                />
+  </url><url>
     <loc>https://example.com/zh-cn/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -17,6 +34,18 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://example.com/zh-cn/categories/"
+                />
+  </url><url>
+    <loc>https://example.com/zh-cn/page/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://example.com/page/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://example.com/zh-cn/page/"
                 />
   </url><url>
     <loc>https://example.com/zh-cn/tags/</loc>
@@ -36,21 +65,16 @@
                 href="https://example.com/zh-cn/tags/"
                 />
   </url><url>
-    <loc>https://example.com/zh-cn/</loc>
+    <loc>https://example.com/zh-cn/%E5%85%B3%E4%BA%8E/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://example.com/ar/"
+                href="https://example.com/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://example.com/zh-cn/"
+                href="https://example.com/zh-cn/%E5%85%B3%E4%BA%8E/"
                 />
   </url>
 </urlset>

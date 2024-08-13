@@ -1,209 +1,362 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>My First Post | My New Hugo Site</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。
-定义一条路径的权值为路径上点权的最大值乘上边权之和。
-求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。
-$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。
-Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。
-注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。
-Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。
-（不会有人真的做 $n$ 次 dij 吧）
-Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，请各位充分发挥自己的想象力
-Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为：
-for (int k=1; k&lt;=n; k&#43;&#43;){ for (int i=1; i&lt;=n; i&#43;&#43;) for (int j=1; j&lt;=n; j&#43;&#43;) dis[i][j]=min(dis[i][j],dis[i][k]&#43;dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。">
-    <meta name="generator" content="Hugo 0.132.0">
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。 定义一条路径的权值为路径上点权的最大值乘上边权之和。 求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。 $1\\le n\\le 500,0\\le m\\le n\\times(n-1),1\\le q\\le 10^4,1\\le a_i,w\\le 10^6,s_i\\not=t_i$，保证图中不含重边与自环。 Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。 注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。 Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。 （不会有人真的做 $n$ 次 dij 吧） Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\\le 50$ 的情况，请各位充分发挥自己的想象力 Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为： 1 2 3 4 5 6 7 for (int k=1; k&lt;=n; k++){ for (int i=1; i&lt;=n; i++) for (int j=1; j&lt;=n; j++) dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\\le k$ 的中间节点的最短路径长度。">
+<title>My First Post</title>
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel='canonical' href='https://example.com/posts/my-first-post/'>
 
-
-
-    
-
-    
-      
-
-    
-
-    
-
-    
-      <link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
-    
-
-    <meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="My First Post">
-  <meta property="og:description" content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。
-定义一条路径的权值为路径上点权的最大值乘上边权之和。
-求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。
-$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。
-Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。
-注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。
-Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。
-（不会有人真的做 $n$ 次 dij 吧）
-Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，请各位充分发挥自己的想象力
-Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为：
-for (int k=1; k&lt;=n; k&#43;&#43;){ for (int i=1; i&lt;=n; i&#43;&#43;) for (int j=1; j&lt;=n; j&#43;&#43;) dis[i][j]=min(dis[i][j],dis[i][k]&#43;dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-08-13T16:19:21+08:00">
-    <meta property="article:modified_time" content="2024-08-13T16:19:21+08:00">
-
-  <meta itemprop="name" content="My First Post">
-  <meta itemprop="description" content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。
-定义一条路径的权值为路径上点权的最大值乘上边权之和。
-求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。
-$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。
-Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。
-注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。
-Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。
-（不会有人真的做 $n$ 次 dij 吧）
-Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，请各位充分发挥自己的想象力
-Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为：
-for (int k=1; k&lt;=n; k&#43;&#43;){ for (int i=1; i&lt;=n; i&#43;&#43;) for (int j=1; j&lt;=n; j&#43;&#43;) dis[i][j]=min(dis[i][j],dis[i][k]&#43;dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。">
-  <meta itemprop="datePublished" content="2024-08-13T16:19:21+08:00">
-  <meta itemprop="dateModified" content="2024-08-13T16:19:21+08:00">
-  <meta itemprop="wordCount" content="788">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="My First Post">
-  <meta name="twitter:description" content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。
-定义一条路径的权值为路径上点权的最大值乘上边权之和。
-求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。
-$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。
-Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。
-注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。
-Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。
-（不会有人真的做 $n$ 次 dij 吧）
-Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，请各位充分发挥自己的想象力
-Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为：
-for (int k=1; k&lt;=n; k&#43;&#43;){ for (int i=1; i&lt;=n; i&#43;&#43;) for (int j=1; j&lt;=n; j&#43;&#43;) dis[i][j]=min(dis[i][j],dis[i][k]&#43;dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。">
-
-	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-   
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="My First Post">
+<meta property='og:description' content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。 定义一条路径的权值为路径上点权的最大值乘上边权之和。 求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。 $1\\le n\\le 500,0\\le m\\le n\\times(n-1),1\\le q\\le 10^4,1\\le a_i,w\\le 10^6,s_i\\not=t_i$，保证图中不含重边与自环。 Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。 注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。 Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。 （不会有人真的做 $n$ 次 dij 吧） Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\\le 50$ 的情况，请各位充分发挥自己的想象力 Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为： 1 2 3 4 5 6 7 for (int k=1; k&lt;=n; k++){ for (int i=1; i&lt;=n; i++) for (int j=1; j&lt;=n; j++) dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\\le k$ 的中间节点的最短路径长度。">
+<meta property='og:url' content='https://example.com/posts/my-first-post/'>
+<meta property='og:site_name' content='Example Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:published_time' content='2024-08-13T16:19:21&#43;08:00'/><meta property='article:modified_time' content='2024-08-13T16:19:21&#43;08:00'/>
+<meta name="twitter:title" content="My First Post">
+<meta name="twitter:description" content="T1 旅行 给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。 定义一条路径的权值为路径上点权的最大值乘上边权之和。 求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。 $1\\le n\\le 500,0\\le m\\le n\\times(n-1),1\\le q\\le 10^4,1\\le a_i,w\\le 10^6,s_i\\not=t_i$，保证图中不含重边与自环。 Subtask 1~6 30pts 直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。 注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。 Subtask 7~8 10pts 所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。 （不会有人真的做 $n$ 次 dij 吧） Subtask ??? 使用各种神秘的最短路做法应该可以解决稀疏图和 $n\\le 50$ 的情况，请各位充分发挥自己的想象力 Subtask 9~20 60pts 考虑使用 floyd 算法，一个常见的算法实现为： 1 2 3 4 5 6 7 for (int k=1; k&lt;=n; k++){ for (int i=1; i&lt;=n; i++) for (int j=1; j&lt;=n; j++) dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]); } 其中 $k$ 每一轮做完之后，dis[i][j] 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\\le k$ 的中间节点的最短路径长度。">
   
 
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        My New Hugo Site
-      
-    </a>
-    <div class="flex-l items-center">
-      
 
-      
-      
-<div class="ananke-socials">
-  
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu13739649187745961479.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Example Site</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://example.com/" selected>English</option>
+                                
+                                    <option value="https://example.com/zh-cn/" >中文</option>
+                                
+                                    <option value="https://example.com/ar/" >عربي</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#t1-旅行">T1 旅行</a>
+          <ol>
+            <li><a href="#subtask-16-30pts">Subtask 1~6 30pts</a></li>
+            <li><a href="#subtask-78-10pts">Subtask 7~8 10pts</a></li>
+            <li><a href="#subtask-">Subtask ???</a></li>
+            <li><a href="#subtask-920-60pts">Subtask 9~20 60pts</a></li>
+          </ol>
+        </li>
+        <li><a href="#t2-极好的树">T2 极好的树</a>
+          <ol>
+            <li><a href="#subtask-15-25pts">Subtask 1~5 25pts</a></li>
+            <li><a href="#subtask-68-15pts">Subtask 6~8 15pts</a></li>
+            <li><a href="#subtask-920-60pts-1">Subtask 9~20 60pts</a></li>
+          </ol>
+        </li>
+        <li><a href="#t3-约束">T3 约束</a>
+          <ol>
+            <li><a href="#subtask-14-20pts">Subtask 1~4 20pts</a></li>
+            <li><a href="#subtask-58-20pts">Subtask 5~8 20pts</a></li>
+            <li><a href="#subtask-913-25pts">Subtask 9~13 25pts</a></li>
+            <li><a href="#subtask-1420-35pts">Subtask 14~20 35pts</a></li>
+          </ol>
+        </li>
+        <li><a href="#t4-下界最速移动">T4 下界最速移动</a>
+          <ol>
+            <li><a href="#subtask-13-15pts">Subtask 1~3 15pts</a></li>
+            <li><a href="#subtask-46-15pts">Subtask 4~6 15pts</a></li>
+            <li><a href="#subtask-7-5pts">Subtask 7 5pts</a></li>
+            <li><a href="#subtask-89-10pts">Subtask 8~9 10pts</a></li>
+            <li><a href="#subtask-1012-15pts">Subtask 10~12 15pts</a></li>
+            <li><a href="#subtask-1320-40pts">Subtask 13~20 40pts</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/my-first-post/">My First Post</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 13, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
 </div>
 
-    </div>
-  </div>
-</nav>
+</header>
 
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside>
-      
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
+    <section class="article-content">
     
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">My First Post</h1>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2024-08-13T16:19:21+08:00">August 13, 2024</time>
-      
-
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h3 id="t1-旅行">T1 旅行</h3>
-<p>给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。</p>
+    
+    <h3 id="t1-旅行">T1 旅行
+</h3><p>给出 $n$ 个点 $m$ 条边的有向图，点有点权，边有边权。</p>
 <p>定义一条路径的权值为路径上点权的最大值乘上边权之和。</p>
 <p>求出 $s$ 到 $t$ 的路径的最小权值，$q$ 组询问，若无法到达则输出 $-1$。</p>
 <p>$1\le n\le 500,0\le m\le n\times(n-1),1\le q\le 10^4,1\le a_i,w\le 10^6,s_i\not=t_i$，保证图中不含重边与自环。</p>
-<h4 id="subtask-16-30pts">Subtask 1~6 30pts</h4>
-<p>直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。</p>
+<h4 id="subtask-16-30pts">Subtask 1~6 30pts
+</h4><p>直接搜索所有可能的路径，记录当前路径中点权最大值和边权之和。</p>
 <p>注意到非简单路径一定是不优的，因此时间复杂度为 $O(n!)$，经过合适的剪枝似乎可以多跑过一个点。</p>
-<h4 id="subtask-78-10pts">Subtask 7~8 10pts</h4>
-<p>所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。</p>
+<h4 id="subtask-78-10pts">Subtask 7~8 10pts
+</h4><p>所有 $a_i$ 均为 $1$，这就表明了所有路径的点权最大值都是 $1$，此时只需要求出 $s$ 到 $t$ 的最短路径长度。</p>
 <p><del>（不会有人真的做 $n$ 次 dij 吧）</del></p>
-<h4 id="subtask-">Subtask ???</h4>
-<p>使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，<del>请各位充分发挥自己的想象力</del></p>
-<h4 id="subtask-920-60pts">Subtask 9~20 60pts</h4>
-<p>考虑使用 <code>floyd</code> 算法，一个常见的算法实现为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; k<span style="color:#f92672">&lt;=</span>n; k<span style="color:#f92672">++</span>){
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>            dis[i][j]<span style="color:#f92672">=</span>min(dis[i][j],dis[i][k]<span style="color:#f92672">+</span>dis[k][j]);
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>其中 $k$ 每一轮做完之后，<code>dis[i][j]</code> 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。</p>
+<h4 id="subtask-">Subtask ???
+</h4><p>使用各种神秘的最短路做法应该可以解决稀疏图和 $n\le 50$ 的情况，<del>请各位充分发挥自己的想象力</del></p>
+<h4 id="subtask-920-60pts">Subtask 9~20 60pts
+</h4><p>考虑使用 <code>floyd</code> 算法，一个常见的算法实现为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">dis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中 $k$ 每一轮做完之后，<code>dis[i][j]</code> 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）编号 $\le k$ 的中间节点的最短路径长度。</p>
 <p>这里 $k$ 的枚举顺序可以进行调整，从而控制路径中间节点的一些信息。</p>
 <p>因此考虑按点权从小到大的顺序枚举 $k$，那么<code>dis[i][j]</code> 表示从 $i$ 到 $j$，只经过（不包含 $i,j$）点权 $\le a[k]$ 的中间节点的最短路径长度，这也就相当于中间节点的点权 $\max\le a[k]$，问题就解决了。</p>
-<h3 id="t2-极好的树">T2 极好的树</h3>
-<p>定义一棵有根树是好的，当且仅当父节点编号小于子节点编号，且没有一棵子树的大小为给定的 $k$ 个数之一。求出 $n$ 个点的每种树高的好有根树个数，$\bmod (10^9+7)$。</p>
+<h3 id="t2-极好的树">T2 极好的树
+</h3><p>定义一棵有根树是好的，当且仅当父节点编号小于子节点编号，且没有一棵子树的大小为给定的 $k$ 个数之一。求出 $n$ 个点的每种树高的好有根树个数，$\bmod (10^9+7)$。</p>
 <p>$1\le T\le 5,0\le k&lt;n\le 500$，$1\le L\le R\le n$，$2\le a_1,a_2,\cdots a_k\le n$，且所有 $a_i$ 互不相同。</p>
-<h4 id="subtask-15-25pts">Subtask 1~5 25pts</h4>
-<p>由于每个点的父节点编号小于自身编号，可知节点 $1$ 一定为根节点以及 $fa_i&lt;i$，对每个 $i$ 枚举所有可能性，暴力所有树形进行统计即可。</p>
-<h4 id="subtask-68-15pts">Subtask 6~8 15pts</h4>
-<p>相当于求出树高 $h$ 分别为 $1,2,3$ 的答案。</p>
+<h4 id="subtask-15-25pts">Subtask 1~5 25pts
+</h4><p>由于每个点的父节点编号小于自身编号，可知节点 $1$ 一定为根节点以及 $fa_i&lt;i$，对每个 $i$ 枚举所有可能性，暴力所有树形进行统计即可。</p>
+<h4 id="subtask-68-15pts">Subtask 6~8 15pts
+</h4><p>相当于求出树高 $h$ 分别为 $1,2,3$ 的答案。</p>
 <ul>
 <li>$h=1$ 当且仅当 $n=1$ 时有一个，其他没有。</li>
 <li>$h=2$ 均有 $1$ 个（以 $1$ 为根的菊花）（需要满足无 $a_i=n$）。</li>
 <li>$h=3$ 的情况，背包第二层的子树大小即可，但是注意到直接背包无法保证树高一定为 $3$，因此求出的实际上是树高 $\le 3$ 的答案，需要减去 $h=2$ 的答案。</li>
 </ul>
 <p>中间的部分分给的比较混沌，我不清楚是否有针对性的做法。</p>
-<h4 id="subtask-920-60pts-1">Subtask 9~20 60pts</h4>
-<p>根据上面部分分得到的启示，我们实际上无法很好地控制树高<strong>恰好</strong>为 $h$，我们可以控制的是树高<strong>不大于</strong> $h$，从这个方面进行思考，设 <code>dp[i][j]</code> 表示 $i$ 个节点的树高 $\le j$ 的好树个数，那么若 $i$ 出现在了给出的 $k$ 个数中，则 <code>dp[i][j]=0</code>。</p>
+<h4 id="subtask-920-60pts-1">Subtask 9~20 60pts
+</h4><p>根据上面部分分得到的启示，我们实际上无法很好地控制树高<strong>恰好</strong>为 $h$，我们可以控制的是树高<strong>不大于</strong> $h$，从这个方面进行思考，设 <code>dp[i][j]</code> 表示 $i$ 个节点的树高 $\le j$ 的好树个数，那么若 $i$ 出现在了给出的 $k$ 个数中，则 <code>dp[i][j]=0</code>。</p>
 <p>那么显然 $1$ 号节点为根，对 $i=1$ 的情况，只有 <code>dp[1][1]=1</code>，对更大的 $i$，<strong>显然 $2$ 号节点为 $1$ 号节点的一个儿子</strong>。枚举 $2$ 号节点所处的子树的大小 $k$，可以得到转移如下：
 $$
 dp[k][j-1]\times dp[i-k][j]\times \binom{i-2}{k-1}\rightarrow dp[i][j]
@@ -216,17 +369,17 @@ $$
 <p>最终树高为 $h$ 的答案即为 <code>dp[n][h]-dp[n][h-1]</code>。</p>
 <hr>
 <p>另外，可以使用卷积将复杂度优化至 $O(n^2\log n)$，但在 NOIP 范围内意义不大了。</p>
-<h3 id="t3-约束">T3 约束</h3>
-<ul>
+<h3 id="t3-约束">T3 约束
+</h3><ul>
 <li>$0\le x\le m$</li>
 <li>$x\not \equiv b_i \pmod {a_i}$，对任意 $1\le i\le n$ 成立</li>
 </ul>
 <p>求出满足条件的 $x$ 的个数。</p>
 <p>$1\le n\le 100,0\le m\le 10^{18},2\le a_i\le 31,0\le b_i&lt;a_i$，所有 $a_i$ 均为质数。</p>
-<h4 id="subtask-14-20pts">Subtask 1~4 20pts</h4>
-<p>直接枚举即可</p>
-<h4 id="subtask-58-20pts">Subtask 5~8 20pts</h4>
-<p>考虑容斥，钦定若干组 $(a_i,b_i)$ 要求 $x\equiv b_i\pmod {a_i}$，其余无所谓。</p>
+<h4 id="subtask-14-20pts">Subtask 1~4 20pts
+</h4><p>直接枚举即可</p>
+<h4 id="subtask-58-20pts">Subtask 5~8 20pts
+</h4><p>考虑容斥，钦定若干组 $(a_i,b_i)$ 要求 $x\equiv b_i\pmod {a_i}$，其余无所谓。</p>
 <p>由于所有 $a_i$ 互不相同，因此限制至多只有 $11$ 组，可以暴力 $2^{11}$ 枚举所有钦定的情况。</p>
 <p>那么现在问题就是：<del>CRT 还记得吗</del>。</p>
 <p>这里我们尝试两两合并同余式：
@@ -238,8 +391,8 @@ $$
 $$
 然后就可以将钦定的所有同余式合并起来得到 $x\equiv B\pmod A$，求出 $0\sim m$ 中满足这个条件的个数是容易的，记得乘上容斥系数 $(-1)^{|S|}$。</p>
 <p>你可能需要比较细心的实现，防止乘法爆 <code>long long</code>。</p>
-<h4 id="subtask-913-25pts">Subtask 9~13 25pts</h4>
-<p>这里不保证 $a_i$ 互不相同了，也就是说同一个 $a_i$ 可以对应多个 $b_i$，钦定的所有 $(a_i,b_i)$ 中 $a_i$ 一定互不相同（注意 <code>pair(a[i],b[i])</code> 可能是相同的，此时需要去重，否则会重复计算）。</p>
+<h4 id="subtask-913-25pts">Subtask 9~13 25pts
+</h4><p>这里不保证 $a_i$ 互不相同了，也就是说同一个 $a_i$ 可以对应多个 $b_i$，钦定的所有 $(a_i,b_i)$ 中 $a_i$ 一定互不相同（注意 <code>pair(a[i],b[i])</code> 可能是相同的，此时需要去重，否则会重复计算）。</p>
 <p>此时仍然沿用上面的容斥思路是没有问题的，但是不能暴力枚举所有钦定的情况。</p>
 <p>所以考虑 <code>dp</code>，按<strong>每种</strong> $a_i$ 进行 <code>dp</code>，注意到 $2\times 3\times 5\times 7\times 11\times 13\times 17=510510$，所以可以直接把合并得到的同余式中的 $B$ 作为状态存下来。</p>
 <p>设 <code>dp[i][j]</code> 表示决策完前 $i$ 种模数，获得的同余式 $x\equiv j\pmod {L_i}$ 的答案，其中 $L_i$ 为前 $i$ 个质数的乘积，也就是合并得到的同余式的模数。</p>
@@ -253,8 +406,8 @@ $$
 dp[i][j]\rightarrow dp[i+1][L_i\times t+j](0\le t&lt;P_{i+1})
 $$
 这样就可以进行 <code>dp</code> 了。</p>
-<h4 id="subtask-1420-35pts">Subtask 14~20 35pts</h4>
-<p>尝试沿用上面的思路，但 $2\times3\times5\times7\times11\times13\times17\times19\times23\times29\times31=200560490130$，所以直接把 $B$ 塞到状态里显然是做不到了。</p>
+<h4 id="subtask-1420-35pts">Subtask 14~20 35pts
+</h4><p>尝试沿用上面的思路，但 $2\times3\times5\times7\times11\times13\times17\times19\times23\times29\times31=200560490130$，所以直接把 $B$ 塞到状态里显然是做不到了。</p>
 <p>所以可以使用 meet in the middle，将 $11$ 种模数分成 $2,3,5,7,11,13,17$ 和 $19,23,29,31$ 两组，第一组的积为 $510510$，第二组的积为 $392863$，可以两组单独做，然后试试将它们合并起来。</p>
 <p>首先设左右两组的 <code>dp</code> 已经全部完成，得到 <code>dpL</code>，<code>dpR</code>，并设 $W_1,W_2$ 分别为左右两组质数的积。</p>
 <p>那么如果左右两侧分别枚举 $i,j$，那么合并结果应当为：
@@ -285,27 +438,27 @@ $$
 <li>$B&rsquo;&gt;m&rsquo;$ 与上面类似，不再赘述。</li>
 </ul>
 <p>这样就可完成快速的合并，而且似乎并不需要精细处理乘法爆 <code>long long</code> 的情况。</p>
-<h3 id="t4-下界最速移动">T4 下界最速移动</h3>
-<p>给出一棵 $n$ 个点的树，节点编号从 $1$ 到 $n$，树边边权均为 $1$。</p>
+<h3 id="t4-下界最速移动">T4 下界最速移动
+</h3><p>给出一棵 $n$ 个点的树，节点编号从 $1$ 到 $n$，树边边权均为 $1$。</p>
 <p>给定树上的 $k$ 个关键点 $p_1,p_2,\cdots,p_k$，这 $k$ 个关键点两两之间添加一条边权为 $w$ 的无向边。</p>
 <p>求这个图的直径，以及取到直径的点对个数。</p>
 <p>$1\le T\le 10^3,2\le n\le 5\times 10^5,0\le k\le n,1\le w&lt; n$，$\forall 1\le i&lt;n,1\le f_i\le i$，$p_i$ 互不相同，且一个测试点中所有 $n$ 的和不超过 $8\times 10^5$。</p>
-<h4 id="subtask-13-15pts">Subtask 1~3 15pts</h4>
-<p>对 $1\le n\le 1000,\sum n\le 5000$ 的部分，观察到题目描述的图中的最短路可以描述为：
+<h4 id="subtask-13-15pts">Subtask 1~3 15pts
+</h4><p>对 $1\le n\le 1000,\sum n\le 5000$ 的部分，观察到题目描述的图中的最短路可以描述为：
 $$
 dis_G(u,v)=\min(dis_T(u,v),d_u+d_v+w)
 $$
 其中 $dis_T$ 表示原树中两点间距离，$d_u$ 表示 $u$ 到最近一个关键点的树上距离。</p>
 <p>那么直接枚举所有点对进行统计即可，时间复杂度 $O(\sum n^2)$。</p>
-<h4 id="subtask-46-15pts">Subtask 4~6 15pts</h4>
-<p>对 $k\le 1$ 的部分，相当于没有新加的边，这时问题转化为求树的直径以及取到直径的点对个数。</p>
+<h4 id="subtask-46-15pts">Subtask 4~6 15pts
+</h4><p>对 $k\le 1$ 的部分，相当于没有新加的边，这时问题转化为求树的直径以及取到直径的点对个数。</p>
 <p>这有很多做法，包括换根 dp 等等。</p>
 <p>一个可行的做法是记 $dp[u],g[u]$ 分别表示 $u$ 到 $u$ 子树中的某个叶子的最大距离，以及取到这个距离的叶子个数，然后一个点统计在它的儿子中取两个所产生的贡献。</p>
 <p>时间复杂度 $O(\sum n)$。</p>
-<h4 id="subtask-7-5pts">Subtask 7 5pts</h4>
-<p>相当于形成了一个完全图，直接输出 $D=1,S=\binom n 2$ 即可。</p>
-<h4 id="subtask-89-10pts">Subtask 8~9 10pts</h4>
-<p>只求第一问，父节点随机。</p>
+<h4 id="subtask-7-5pts">Subtask 7 5pts
+</h4><p>相当于形成了一个完全图，直接输出 $D=1,S=\binom n 2$ 即可。</p>
+<h4 id="subtask-89-10pts">Subtask 8~9 10pts
+</h4><p>只求第一问，父节点随机。</p>
 <p>观察式子：
 $$
 dis_G(u,v)=\min(dis_T(u,v),d_u+d_v+w)
@@ -321,8 +474,8 @@ dp[u][j]:=\max(dp[u][j],dp[v][j])
 $$
 这样做即可。</p>
 <p>期望时间复杂度 $O(\sum n\log^2n)$（期望树高 $\log n$）。</p>
-<h4 id="subtask-1012-15pts">Subtask 10~12 15pts</h4>
-<p>只求第一问，不限制树的形态。</p>
+<h4 id="subtask-1012-15pts">Subtask 10~12 15pts
+</h4><p>只求第一问，不限制树的形态。</p>
 <p>出现了 $dep$，那么我们就可以往长链剖分上想，记 $dp[u][i]$ 表示 $u$ 子树中，与 $u$ 的距离为 $i$ 的最大 $d$ 值，然后我们继承长儿子的信息，暴力合并短儿子的信息。令 $mxdep[u]$ 表示 $u$ 子树中最深的一个叶子与 $u$ 的距离。</p>
 <p>那么我们现在的问题就是在 $O(短链长度)$ 的时间内完成一条短链的贡献。</p>
 <p>令 $g[u][i]$ 表示 $u$ 子树中，与 $u$ 的距离至少为 $i$ 的最大 $d$ 值，容易发现随着 $i$ 的增大，$g[u][i]$ 的值减小。</p>
@@ -332,8 +485,8 @@ $$
 $$
 当我们枚举短链上的一个深度 $j$ 时，长链上 $g[u][i]$ 随 $i$ 增大而减小，因此用一次二分求出二者的分界点就可以了。最后还需要考虑一个端点在 $u$ 上的情况，这也可以通过一次二分来完成。</p>
 <p>时间复杂度 $O(\sum n\log n)$。</p>
-<h4 id="subtask-1320-40pts">Subtask 13~20 40pts</h4>
-<p>$1\le n\le10^5,\sum n\le 3\times 10^5$，需要求出第二问。</p>
+<h4 id="subtask-1320-40pts">Subtask 13~20 40pts
+</h4><p>$1\le n\le10^5,\sum n\le 3\times 10^5$，需要求出第二问。</p>
 <p>首先先求出第一问的答案 $D$。</p>
 <p>然后相当于计数有多少对点对 $u,v$ 满足 $1\le u&lt;v\le n,\min(dis_T(u,v),d_u+d_v+w)=D$。</p>
 <p>首先：
@@ -363,37 +516,194 @@ $$
 <p>另外，点分治，边分治都可以在 $O(n\log^2 n)$ 的时间内解决这档问题，其原理与 dsu 类似。</p>
 <p>时间复杂度 $O(\sum n\log^2 n)$。</p>
 <p>为了控制难度把 2log 的做法放过去了，<del>敢写敢 AC</del>，<del>存在 1log 的做法，实际写出来之后被 2log 爆杀，常数大到上天，仅作课后思考</del>。</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
-    </div>
 
-    <aside class="w-30-l mt6-l">
+</section>
 
 
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
 
 
-</aside>
 
-  </article>
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
 
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
-    &copy;  My New Hugo Site 2024 
-  </a>
-    <div>
-<div class="ananke-socials">
-  
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-</div>
-  </div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Example Person
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
 </footer>
 
-  </body>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
 </html>
